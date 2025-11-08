@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storybook CyberQuest - DataShield Chronicles</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f0f23 100%);
+            color: #e0e0ff;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, rgba(58, 12, 163, 0.3) 0%, rgba(16, 16, 40, 0.5) 100%);
+            border-bottom: 3px solid #00d9ff;
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+            animation: scan 3s infinite;
+        }
+        
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5em;
+            font-weight: 900;
+            color: #00d9ff;
+            text-shadow: 
+                0 0 10px #00d9ff,
+                0 0 20px #00d9ff,
+                0 0 30px #00d9ff,
+                0 0 40px #7b2cbf;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5em;
+            color: #b19cd9;
+            text-shadow: 0 0 10px rgba(177, 156, 217, 0.5);
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .chapter {
+            background: rgba(26, 31, 58, 0.6);
+            border: 2px solid #7b2cbf;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(123, 44, 191, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chapter::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #00d9ff, #7b2cbf, #ff006e);
+        }
+        
+        .chapter:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px rgba(0, 217, 255, 0.4);
+            border-color: #00d9ff;
+        }
+        
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2em;
+            color: #00d9ff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(0, 217, 255, 0.5);
+            letter-spacing: 2px;
+        }
+        
+        .chapter-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #7b2cbf, #00d9ff);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.6em;
+            margin-right: 10px;
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.5);
+        }
+        
+        p {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            text-align: justify;
+            color: #d0d0e8;
+            line-height: 1.9;
+        }
+        
+        .chapter-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: block;
+            border: 3px solid #7b2cbf;
+            box-shadow: 0 5px 25px rgba(123, 44, 191, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .chapter-image:hover {
+            transform: scale(1.05);
+            border-color: #00d9ff;
+            box-shadow: 0 8px 35px rgba(0, 217, 255, 0.6);
+        }
+        
+        .quote-section {
+            background: linear-gradient(135deg, rgba(123, 44, 191, 0.3), rgba(0, 217, 255, 0.2));
+            border: 2px solid #00d9ff;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 60px 0;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3);
+        }
+        
+        .quote {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8em;
+            font-style: italic;
+            color: #00d9ff;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.7);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .quote-author {
+            font-size: 1.2em;
+            color: #b19cd9;
+            letter-spacing: 1px;
+        }
+        
+        .useful-links {
+            background: rgba(16, 16, 40, 0.7);
+            border: 2px solid #7b2cbf;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .useful-links h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00d9ff;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+        }
+        
+        .link-item {
+            display: block;
+            color: #b19cd9;
+            text-decoration: none;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(123, 44, 191, 0.2);
+            border-radius: 8px;
+            border-left: 4px solid #00d9ff;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+        
+        .link-item:hover {
+            background: rgba(0, 217, 255, 0.2);
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(16, 16, 40, 0.8);
+            border-top: 3px solid #7b2cbf;
+            margin-top: 60px;
+            color: #b19cd9;
+        }
+        
+        footer p {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1em;
+            text-align: center;
+        }
+        
+        .hero-tag {
+            display: inline-block;
+            background: linear-gradient(90deg, #7b2cbf, #00d9ff);
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin: 20px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .subtitle {
+                font-size: 1em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+            
+            .chapter {
+                padding: 20px;
+            }
+            
+            .quote {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Storybook CyberQuest</h1>
+            <p class="subtitle">DataShield Chronicles</p>
+            <div class="hero-tag">Elios Varen - L'Eroe Digitale del Cyberspazio</div>
+        </header>
+        
+        <section class="chapter">
+            <h2><span class="chapter-number">Capitolo 1</span>L'Accesso</h2>
+            <img class="chapter-image" src="assets/chapter1.jpg" alt="Elios entra nel mondo digitale">
+            <p>
+                La prima volta che Elios Varen entrò nel cyberspazio, non fu per scelta, ma per necessità. Era una notte di novembre, 
+                e la città dormiva sotto un manto di luci al neon. Nel suo piccolo appartamento, circondato da schermi che illuminavano 
+                l'oscurità, Elios digitò l'ultimo comando. Il mondo fisico svanì. Si ritrovò in un universo fatto di codice puro, 
+                dove i dati scorrevano come fiumi luminosi e le architetture digitali si ergevano come cattedrali di luce. 
+                Era dentro. Era DataShield. E da quel momento, nulla sarebbe più stato lo stesso. Il suo corpo rimase immobile 
+                sulla sedia, ma la sua coscienza navigava attraverso firewall e protocolli di sicurezza, esplorando le profondità 
+                infinite della rete. Ogni bit di informazione pulsava di vita propria, ogni database nascondeva segreti che 
+                attendevano di essere scoperti. Elios capì subito che questo nuovo mondo aveva le sue regole, i suoi pericoli, 
+                e le sue opportunità. Era l'inizio di una missione che avrebbe definito il suo destino.
+            </p>
+        </section>
+        
+        <section class="chapter">
+            <h2><span class="chapter-number">Capitolo 2</span>Il Virus Dormiente</h2>
+            <img class="chapter-image" src="assets/chapter2.jpg" alt="La prima minaccia informatica emerge">
+            <p>
+                Settimane dopo il suo primo accesso, DataShield scoprì qualcosa di inquietante nei meandri di un server governativo. 
+                Un codice anomalo, silenzioso, quasi invisibile. Era un virus dormiente, progettato per attivarsi in un momento preciso 
+                e causare il caos su scala globale. Il malware era sofisticato, nascosto tra milioni di righe di codice legittimo, 
+                come un predatore mimetizzato nella giungla digitale. Elios iniziò a tracciare la sua origine, seguendo frammenti 
+                di codice attraverso proxy e nodi anonimi. Ogni indizio lo portava più in profondità in una rete oscura di cybercriminali. 
+                Ma più si avvicinava alla verità, più il virus sembrava essere consapevole della sua presenza. Gli attacchi iniziarono: 
+                denial-of-service, trojan, phishing mirato. Qualcuno voleva fermarlo. DataShield capì che non stava solo cacciando 
+                un virus, ma combattendo contro un'intelligenza che aveva imparato a difendersi. La minaccia era reale, 
+                e il tempo stava per scadere. Doveva agire, e in fretta, prima che il virus si risvegliasse e trasformasse 
+                il mondo digitale in un campo di battaglia.
+            </p>
+        </section>
+        
+        <section class="chapter">
+            <h2><span class="chapter-number">Capitolo 3</span>La Rete Infranta</h2>
+            <img class="chapter-image" src="assets/chapter3.jpg" alt="Dilemma morale di DataShield">
+            <p>
+                Durante le sue indagini, DataShield si imbatté in un dilemma che avrebbe scosso le fondamenta della sua missione. 
+                Scoprì che il virus non era solo un'arma di distruzione, ma anche una chiave. Una chiave che avrebbe potuto 
+                sbloccare database governativi contenenti prove di corruzione, abusi di potere e ingiustizie nascoste al pubblico. 
+                Eliminare il virus significava proteggere il sistema, ma anche seppellire la verità. Lasciarlo attivo, invece, 
+                avrebbe esposto i colpevoli ma causato danni irreparabili a milioni di innocenti. Elios si trovò di fronte 
+                a una scelta impossibile: essere l'eroe che protegge l'ordine, o il ribelle che espone la corruzione a qualsiasi costo? 
+                Le notti divennero interminabili. I suoi principi erano chiari, ma la realtà era grigia. Consultò le sue fonti, 
+                parlò con alleati nel deep web, ma nessuno poteva dargli la risposta. La rete che aveva giurato di proteggere 
+                era infranta, non dal virus, ma dalle persone che l'avevano costruita con bugie. DataShield capì che non bastava 
+                essere un guardiano digitale; doveva diventare qualcosa di più. Doveva essere giusto, anche quando giustizia 
+                e protezione non coincidevano più.
+            </p>
+        </section>
+        
+        <section class="chapter">
+            <h2><span class="chapter-number">Capitolo 4</span>Il Codice del Cuore</h2>
+            <img class="chapter-image" src="assets/chapter4.jpg" alt="La scoperta che cambia tutto">
+            <p>
+                La svolta arrivò quando DataShield scoprì la vera identità del creatore del virus: era Aria, la sua mentore, 
+                colei che gli aveva insegnato tutto sul cyberspazio. Il tradimento lo colpì come una scarica elettrica nel codice. 
+                Aria non era una criminale comune; aveva creato il virus per una ragione precisa. Anni prima, suo fratello era morto 
+                a causa di un errore medico coperto da documenti falsificati e protetti da firewall governativi. Il virus era 
+                la sua vendetta, il suo modo di costringere il sistema a rispondere delle proprie colpe. Elios la affrontò 
+                in un incontro virtuale, in un nodo isolato del cyberspazio dove solo loro due potevano comunicare. Le parole 
+                furono poche ma cariche di emozione. "Hai tradito tutto ciò che ti ho insegnato," le disse. "No," rispose Aria, 
+                "ti ho insegnato a cercare la verità. Ora devi decidere cosa farne." Il codice del cuore di Elios era lacerato. 
+                Comprese che la giustizia non è mai bianca o nera, ma un mosaico complesso di scelte dolorose. Doveva fermare Aria, 
+                ma anche onorare la verità che lei aveva portato alla luce. Era arrivato il momento della decisione finale.
+            </p>
+        </section>
+        
+        <section class="chapter">
+            <h2><span class="chapter-number">Capitolo 5</span>Il Firewall Finale</h2>
+            <img class="chapter-image" src="assets/chapter5.png" alt="La scelta decisiva di DataShield">
+            <p>
+                DataShield prese la sua decisione. Non avrebbe distrutto completamente il virus, né lasciato che devastasse il sistema. 
+                Invece, riprogrammò il codice, trasformandolo in uno strumento di trasparenza controllata. Il virus rilasciò 
+                le prove di corruzione in modo graduale, permettendo alle autorità competenti di investigare senza causare 
+                il collasso del sistema. Non fu una soluzione perfetta, ma fu giusta. Aria venne arrestata, ma i suoi sacrifici 
+                non furono vani. Le informazioni che emersero portarono a riforme significative e all'incriminazione di decine 
+                di funzionari corrotti. Elios capì che essere un eroe non significa sempre vincere in modo pulito, ma fare 
+                la cosa giusta anche quando costa tutto. Il suo firewall finale non fu fatto di codice, ma di principi. 
+                Nel silenzio del suo appartamento, con le luci al neon della città che filtravano attraverso la finestra, 
+                DataShield si disconnesse dal cyberspazio. Il suo viaggio non era finito, ma aveva imparato una lezione fondamentale: 
+                la tecnologia è neutra, ma le scelte umane no. E ogni volta che entrava in rete, portava con sé quella verità.
+            </p>
+            <p>
+                <strong>La morale della storia:</strong> Nel mondo digitale come in quello reale, la vera forza di un eroe 
+                non sta nella capacità di distruggere il male, ma nella saggezza di comprendere che la giustizia richiede 
+                coraggio, compassione e la volontà di fare scelte difficili. La tecnologia può essere un'arma o uno strumento 
+                di liberazione: dipende dalle mani che la guidano e dal cuore che la comanda.
+            </p>
+        </section>
+        
+        <div class="quote-section">
+            <p class="quote">
+                "Nel silenzio del codice, la verità è la mia arma più luminosa."
+            </p>
+            <p class="quote-author">— Elios Varen, DataShield</p>
+        </div>
+        
+        <section class="useful-links">
+            <h3>🔐 Cyber Security - Risorse Utili</h3>
+            <p>Scopri di più sulla sicurezza informatica e proteggi il tuo mondo digitale:</p>
+            <a href="https://www.cybersecurity-insiders.com/" target="_blank" class="link-item">
+                📚 Cyber Security Insiders - Guide e Articoli
+            </a>
+            <a href="https://www.youtube.com/c/NetworkChuck" target="_blank" class="link-item">
+                🎥 NetworkChuck - Video Tutorial sulla Sicurezza Informatica
+            </a>
+            <a href="https://www.kaspersky.it/resource-center/threats" target="_blank" class="link-item">
+                🛡️ Kaspersky Resource Center - Minacce Informatiche
+            </a>
+            <a href="https://owasp.org/" target="_blank" class="link-item">
+                🌐 OWASP - Open Web Application Security Project
+            </a>
+        </section>
+        
+        <footer>
+            <p>© 2025 DataShield Chronicles | Una storia di Elios Varen</p>
+            <p>Creato con passione per la cybersecurity e il mondo digitale</p>
+        </footer>
+    </div>
+</body>
+</html>
